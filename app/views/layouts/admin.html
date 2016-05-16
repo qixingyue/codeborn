@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><?php echo $layout['title'] ; ?></title>
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/styles.css" rel="stylesheet">
+
+<!--Icons-->
+<script src="/static/js/lumino.glyphs.js"></script>
+
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+	<!-- NAV START -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+
+				<a class="navbar-brand" href="/index/user"><span>Code</span>Born</a>
+
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<svg class="glyph stroked male-user">
+						<use xlink:href="#stroked-male-user"></use>
+						</svg> User <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+
+						<li>
+						<a href="/index/logout">
+							<svg class="glyph stroked gear"><use xlink:href="#stroked-gear"/></svg>Settings
+						</a>
+						</li>
+
+						<li>
+						<a href="/index/logout">
+							<svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg>Logout
+						</a>
+						</li>
+
+
+						</ul>
+					</li>
+				</ul>
+			</div>
+							
+		</div>
+	</nav>
+	<!-- NAV END -->
+
+	<!-- MENU -->
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar collapse in">
+
+		<ul class="nav menu" style="margin-top:20px;" >
+
+			<li <?php isActive('project' == $layout['menu']);?>>
+			<a class="" href="/project">
+				<svg class="glyph stroked chevron-right">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-chevron-right"></use>
+				</svg>
+			 	我的项目
+			</a>
+			</li>
+
+			<li <?php isActive('settings' == $layout['menu']) ?>>
+			<a class="" href="/settings">
+				<svg class="glyph stroked chevron-right">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-chevron-right"></use>
+				</svg>
+				我的信息
+			</a>
+			</li>
+
+		</ul>
+
+	</div>
+	<!-- END MENU -->
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="/index/user"><svg class="glyph stroked home"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-home"></use></svg></a></li>
+				<?php isset($layout['breads']) ? "" : $layout['breads'] = array(); foreach($layout['breads'] as $link=>$name):?>
+				<li <?php isActive('' == $link ); ?>><a href="<?php echo $link?>"><?php echo $name; ?></a></li>
+				<?php endforeach;?>
+			</ol>
+		</div>
+
+		<?php echo $content; ?>
+
+	</div>
+		
+
+</body>
+
+</html>
