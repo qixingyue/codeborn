@@ -100,12 +100,14 @@ class DbUtil{
 		$sql = array_shift($args);
 		$stmt = self::$db_write->prepare($sql);
 		if($stmt == false || null == $stmt ) {
+			echo $sql . "\n";
 			return false;
 		}
 		if(!empty($args)){
 			call_user_func_array(array($stmt,'bind_param'),$this->refValues($args));
 		}
 		$stmt->execute();
+		
 		return $stmt->insert_id;
 	}
 

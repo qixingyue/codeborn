@@ -39,6 +39,8 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 			"/index/login",
 			"/index/index",
 			"/index/logout",
+			"/test/index",
+			"/parser/do",
 			"/"	
 		);
 

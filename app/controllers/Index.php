@@ -32,7 +32,6 @@ class IndexController extends AppController {
 
 	public function userAction(){
 		$this->setLayoutFile("admin.html");
-			
 	}
 
 }

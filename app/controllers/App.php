@@ -6,6 +6,7 @@ class AppController extends Yaf_Controller_Abstract {
 
 	public function init(){
 		LayoutPlugin::setLayoutFile($this->layoutFile);
+		LayoutPlugin::setLayoutFile($this->layoutFile);
 	}
 
 	public function indexAction(){
@@ -31,6 +32,34 @@ class AppController extends Yaf_Controller_Abstract {
 
 	protected function setLayoutFile($layoutFile){
 		LayoutPlugin::setLayoutFile($layoutFile);
+	}
+
+	protected function onlyText(){
+		LayoutPlugin::disable();
+		Yaf_Dispatcher::getInstance()->disableView();
+	}
+
+	protected function jsonMessage($res,$message = "" ,$data = ""){
+
+		$this->onlyText();
+		$data = array(
+			'res'	=> $res,
+			'message' => $message,
+			'data' => $data
+		);
+
+		echo json_encode($data);
+	
+	}
+
+	protected function baseDelById($id,$model){
+		if($this->isPost()){
+			if($model->delById($id)){
+				$this->jsonMessage(true);	
+			} else {
+				$this->jsonMessage(false,"删除失败!");	
+			}
+		}
 	}
 
 }

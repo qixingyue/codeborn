@@ -17,7 +17,9 @@ class ErrorController extends Yaf_Controller_Abstract{
 		case YAF_ERR_NOTFOUND_VIEW:
 			//header('HTTP/1.1 404 Not Found');
 			echo  'VIEW was not found' . "\n";
+			echo "<pre>";
 			print_r($exception);
+			echo "</pre>";
 			break;
 		default :
 			header('HTTP/1.1 500 Internal Server Error');

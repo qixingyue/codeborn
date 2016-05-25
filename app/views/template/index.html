@@ -1,0 +1,35 @@
+<?php setLayoutVar('breads',array("/template"=>"模板管理","/template/index"=>"我的模板"));?>
+<div class="row" style="margin-top:20px;">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">我的模板</div>
+			<div class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>名称</th>
+							<th>请求地址</th>
+							<th>标签</th>
+							<th>变量</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<?php foreach($data as $d):?>
+					<tr>
+						<td style="vertical-align:middle;"><?php echo $d['id'] ; ?></td>
+						<td style="vertical-align:middle;"><?php echo $d['name'] ; ?></td>
+						<td style="vertical-align:middle;">curl -d "tpl=<?php echo $d['en_name'] ; ?>" http://codeborn.istrone.com/parser/do</td>
+						<td style="vertical-align:middle;"><?php echo $d['type'] ; ?></td>
+						<td style="vertical-align:middle;"><?php echo parseTemplateVars($d['content']); ?></td>
+						<td style="vertical-align:middle;">
+							<a href="/template/edit/id/<?php echo $d['id']; ?>"> 编辑</a>
+							<a dellink href="/template/del/<?php echo $d['id']; ?>"> 删除	</a>
+						</td>
+					</tr>
+					<?php endforeach;?>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
